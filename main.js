@@ -1,5 +1,8 @@
 var mutation_chance;
+var generations;
 
+
+//Sets background-color and mutation_rate 
 function initialize(){
     var color = document.getElementById("color_field").value;
     //alert(color);
@@ -8,10 +11,7 @@ function initialize(){
     mutation_chance = mutation_rate;
 }
 
-
-
-//FOR TESTING PURPOSES
-//creates a bunch of entities just to test
+//creates a bunch of entities
 entities = []
 for (var i = 0; i < 100; i++) {
 	entities.push([Math.floor(Math.random() * 255),
@@ -32,6 +32,6 @@ class Entity {
 
 function generation(entities) {
 	for (var i = 0; i < entities.length; i++) {
-		
+
 	}
 }

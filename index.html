@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Natural Selection Simulator</title>
-    <script type="text/javascript" src="main.js"></script>
 </head>
 <body>
-    <form>
+    <form id="settings">
         <input type="text" id="color_field" placeholder="RGB(123,205,123)"/>
-        <input type="button" value="Set Background Color" onclick="changeBackground()"/>
+        <input type="text" id="mutation_field" placeholder="Mutation Possibility"/>
+        <input type="button" value="Start Simulation" onclick="initialize()"/>
     </form>
 </body>
+<script type="text/javascript" src="main.js"></script>
 </html>

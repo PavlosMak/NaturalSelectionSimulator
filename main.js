@@ -1,11 +1,11 @@
 var mutation_chance;
 var generations;
-var backgroundColor;
+var background_color;
 
 
 //Sets background-color and mutation_rate
 function initialize(){
-    backgroundColor = document.getElementById("color_field").value;
+    background_color = document.getElementById("color_field").value;
     //alert(color);
     document.body.style.backgroundColor = backgroundColor;
     mutation_chance = document.getElementById("mutation_field").value;

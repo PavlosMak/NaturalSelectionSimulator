@@ -7,7 +7,7 @@ var background_color;
 function initialize(){
     background_color = document.getElementById("color_field").value;
     //alert(color);
-    document.body.style.backgroundColor = backgroundColor;
+    document.body.style.backgroundColor = background_color;
     mutation_chance = document.getElementById("mutation_field").value;
 }
 

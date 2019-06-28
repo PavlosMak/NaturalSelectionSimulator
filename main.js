@@ -6,8 +6,10 @@ var background_color;
 //Sets background-color and mutation_rate
 function initialize(){
     background_color = document.getElementById("color_field").value;
+    //canvas = document.getElementById("Canvas").value;
     //alert(color);
-    document.body.style.backgroundColor = background_color;
+    //document.body.style.backgroundColor = background_color;
+    document.getElementById("Canvas").style.backgroundColor = background_color;
     mutation_chance = document.getElementById("mutation_field").value;
 }
 
@@ -32,6 +34,6 @@ class Entity {
 
 function generation(entities) {
 	for (var i = 0; i < entities.length; i++) {
-
+        //Check populate.js
 	}
 }

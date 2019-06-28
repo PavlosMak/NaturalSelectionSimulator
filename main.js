@@ -1,14 +1,14 @@
 var mutation_chance;
 var generations;
+var backgroundColor;
 
 
-//Sets background-color and mutation_rate 
+//Sets background-color and mutation_rate
 function initialize(){
-    var color = document.getElementById("color_field").value;
+    backgroundColor = document.getElementById("color_field").value;
     //alert(color);
-    document.body.style.backgroundColor = color;
-    var mutation_rate = document.getElementById("mutation_field").value;
-    mutation_chance = mutation_rate;
+    document.body.style.backgroundColor = backgroundColor;
+    mutation_chance = document.getElementById("mutation_field").value;
 }
 
 //creates a bunch of entities

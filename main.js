@@ -22,23 +22,23 @@ class Entity {
 }
 
 function populate(){
-	var canvas = document.getElementById("Canvas");
+    var canvas = document.getElementById("Canvas");
     var ctx = canvas.getContext("2d");
     for (var i = 0; i < 100; i++){
 		//gets the color from the entity
-        ctx.fillStyle = to_hex(entities[i].color);
+                ctx.fillStyle = to_hex(entities[i].color);
 		ctx.fillRect(entities[i].position[0],
 			entities[i].position[1],
 			entity_width,
 			entity_height);
-        ctx.stroke();
+                ctx.stroke();
     }
 }
 
 //Sets background-color and mutation_rate
 function initialize(){
 	//sets the background color
-    background_color = document.getElementById("color_field").value;
+        background_color = document.getElementById("color_field").value;
 	document.getElementById("Canvas").style.backgroundColor = background_color;
 	//imports the mutation chance and the initial entities number from the user
 	mutation_chance = document.getElementById("mutation_field").value;

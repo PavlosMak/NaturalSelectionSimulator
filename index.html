@@ -6,10 +6,14 @@
 </head>
 <body>
     <form id="settings">
-        <input type="text" id="color_field" placeholder="RGB(123,205,123)"/>
-        <input type="text" id="mutation_field" placeholder="Mutation Possibility"/>
-        <input type="text" id="init_entities_num" placeholder="Initial Entities Number"/>
+        Background Color<br>
+        <input type="text" id="color_field" value="RGB(123,205,123)"/><br>
+        Mutation Possibility (%)<br>
+        <input type="text" id="mutation_field" value="10"/><br>
+        Initial Entities Number<br>
+        <input type="text" id="init_entities_num" value="100"/><br>
         <input type="button" id='start' value="Start Simulation" onclick="initialize()"/>
+        <input type="button" id='generation' value="Generation" onclick="generation_pass()"/>
     </form>
 
     <canvas id="Canvas" width="600" height="600"></canvas>

@@ -11,13 +11,31 @@ var canvas_height = 600;
 
 var entities = [];
 
+class Entity {
+	//entity class
+	constructor(color) {
+		// creates an entity
+		this.position = [Math.floor(Math.random() * (canvas_width-entity_width)),
+			Math.floor(Math.random() * (canvas_height-entity_height))
+		];
+        this.color = color;
+        this.distance = 
+            ((this.color[0]-background_color[0])**2 + 
+            (this.color[1]-background_color[1])**2 + 
+            (this.color[2]-background_color[2])**2)**(1/2);
+	}
+}
+
 function disable_button(id){
     document.getElementById(id).disabled = true;
 }
 
 function enable_button(id){
-    document.getElementById("myBtn").disabled = false;
+    document.getElementById(id).disabled = false;
 }
+
+//initially disables the generation button
+disable_button("generation");
 
 function array_to_rgb(rgb_array){
     //converts rgb arrays to strings
@@ -46,22 +64,6 @@ function rgb_to_array(rgb_string){
     return rgb_array;
 }
 
-
-class Entity {
-	//entity class
-	constructor(color) {
-		// creates an entity
-		this.position = [Math.floor(Math.random() * (canvas_width-entity_width)),
-			Math.floor(Math.random() * (canvas_height-entity_height))
-		];
-        this.color = color;
-        this.distance = 
-            ((this.color[0]-background_color[0])**2 + 
-            (this.color[1]-background_color[1])**2 + 
-            (this.color[2]-background_color[2])**2)**(1/2);
-	}
-}
-
 function populate() {
 	var canvas = document.getElementById("Canvas");
 	var ctx = canvas.getContext("2d");
@@ -74,6 +76,32 @@ function populate() {
 			entity_height);
 		ctx.stroke();
 	}
+}
+
+//renamed to "generation_pass" because "generation"
+//is reserved.
+function generation_pass() {
+    //temporary disabling of the generation button
+    //so that the user cant spam it
+    disable_button("generation");
+    generations++;
+    //sorting the entities list by distance from the
+    //background color
+    entities.sort(
+        function(a,b) {
+            return a.distance - b.distance;
+        }
+    );
+    //kills the "worst" entities, the ones
+    //with the bigger difference from the bg color
+    ent_length = entities.length;
+    for (var i = 0; i < (ent_length / 2); i++){
+        entities.pop();
+    }
+    
+    for (ent of entities) {
+        mutation = Math.random() * mutation_chance;
+    }
 }
 
 //Sets background-color and mutation_rate
@@ -96,19 +124,8 @@ function initialize() {
     //disables the "start button"
     disable_button("start");
 	//initially populates
-	populate();
+    populate();
+    //enables the generation button
+    enable_button("generation");
 }
 
-function generation() {
-    generations++;
-    entities.sort(
-        function(a,b) {
-            return a.distance - b.distance;
-        }
-    );
-    for (; i < (entities.length / 2); ){
-        //kills the 50 "worst" entities
-        entities.pop();
-    }
-    
-}

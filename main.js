@@ -11,6 +11,11 @@ var canvas_height = 600;
 
 var entities = [];
 
+var mutation_list;
+var weight;
+
+var mutation_change_range;
+
 class Entity {
 	//entity class
 	constructor(color) {
@@ -25,6 +30,28 @@ class Entity {
             (this.color[2]-background_color[2])**2)**(1/2);
 	}
 }
+
+var rand = function(min, max) {
+    return Math.random() * (max - min) + min;
+};
+ 
+var get_random_item = function(list, weight) {
+    var total_weight = weight.reduce(function (prev, cur, i, arr) {
+        return prev + cur;
+    });
+     
+    var random_num = rand(0, total_weight);
+    var weight_sum = 0;
+     
+    for (var i = 0; i < list.length; i++) {
+        weight_sum += weight[i];
+        weight_sum = +weight_sum.toFixed(2);
+         
+        if (random_num <= weight_sum) {
+            return list[i];
+        }
+    }
+};
 
 function disable_button(id){
     document.getElementById(id).disabled = true;
@@ -66,7 +93,8 @@ function rgb_to_array(rgb_string){
 
 function populate() {
 	var canvas = document.getElementById("Canvas");
-	var ctx = canvas.getContext("2d");
+    var ctx = canvas.getContext("2d");
+    ctx.clearRect(0,0,canvas_width,canvas_height);
 	for (ent of entities) {
 		//gets the color from the entity
 		ctx.fillStyle = array_to_rgb(ent.color);
@@ -98,10 +126,26 @@ function generation_pass() {
     for (var i = 0; i < (ent_length / 2); i++){
         entities.pop();
     }
-    
-    for (ent of entities) {
-        mutation = Math.random() * mutation_chance;
+
+    var new_ent
+    var entities_clone = entities.slice(0);
+    for (ent of entities_clone) {
+        if (get_random_item(mutation_list,weight)){
+            mutation_plus_r = Math.random() * mutation_change_range;
+            mutation_plus_g = Math.random() * mutation_change_range;
+            mutation_plus_b = Math.random() * mutation_change_range;
+
+            new_ent = new Entity([ent.color[0]+mutation_plus_r,
+                ent.color[1]+mutation_plus_g,
+                ent.color[2]+mutation_plus_b]);
+            entities.push(new_ent);
+        } else {
+            new_ent = new Entity([ent.color[0],ent.color[1],ent.color[2]]);
+            entities.push(new_ent);
+        }
     }
+    populate();
+    enable_button('generation');
 }
 
 //Sets background-color and mutation_rate
@@ -113,6 +157,11 @@ function initialize() {
 	//imports the mutation chance and the initial entities number from the user
 	mutation_chance = document.getElementById("mutation_field").value;
 	init_entities_num = document.getElementById("init_entities_num").value;
+    //imports the mutation change range
+    mutation_change_range = document.getElementById("mutation_change_field").value;
+
+    mutation_list = [true,false];
+    weight = [2*(mutation_chance/100), 1-2*(mutation_chance/100)];
 
 	//creates a bunch of entities
 	for (var i = 0; i < init_entities_num; i++) {

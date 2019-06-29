@@ -14,8 +14,11 @@
         <input type="text" id="mutation_change_field" value="5"/><br>
         Initial Entities Number<br>
         <input type="text" id="init_entities_num" value="100"/><br>
-        <input type="button" id='start' value="Start Simulation" onclick="initialize()"/>
-        <input type="button" id='generation' value="Generation" onclick="generation_pass()"/>
+        <input type="button" id='start' value="Start Simulation" onclick="initialize()"/><br>
+        Pass
+        <input type="text" id="generation_num" value="1">
+        <input type="button" id='generation' 
+        value="Generations" onclick="many_gen(document.getElementById('generation_num').value)"/>
     </form>
 
     <canvas id="Canvas" width="600" height="600"></canvas>

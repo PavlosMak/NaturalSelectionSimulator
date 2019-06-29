@@ -128,6 +128,7 @@ function generation_pass() {
     }
 
     var new_ent
+    //clones entities list
     var entities_clone = entities.slice(0);
     for (ent of entities_clone) {
         if (get_random_item(mutation_list,weight)){
@@ -146,6 +147,14 @@ function generation_pass() {
     }
     populate();
     enable_button('generation');
+}
+
+function many_gen(n){
+    //this function helps pass many generations once
+    for (var i = 0; i < n; i++){
+        generation_pass()
+        
+    }
 }
 
 //Sets background-color and mutation_rate

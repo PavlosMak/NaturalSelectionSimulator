@@ -18,7 +18,11 @@ class Entity {
 		this.position = [Math.floor(Math.random() * canvas_width),
 			Math.floor(Math.random() * canvas_height)
 		];
-		this.color = color;
+        this.color = color;
+        this.distance = 
+            ((this.color[0]-background_color[0])**2 + 
+            (this.color[1]-background_color[1])**2 + 
+            (this.color[2]-background_color[2])**2)**(1/2);
 	}
 }
 
@@ -40,7 +44,7 @@ function populate() {
 function initialize() {
 	//sets the background color
 	background_color = document.getElementById("color_field").value;
-	document.getElementById("Canvas").style.backgroundColor = background_color;
+    document.getElementById("Canvas").style.backgroundColor = background_color;
 	//imports the mutation chance and the initial entities number from the user
 	mutation_chance = document.getElementById("mutation_field").value;
 	init_entities_num = document.getElementById("init_entities_num").value;
@@ -63,13 +67,19 @@ function componentToHex(c) {
 }
 
 function to_hex(rgb) {
-	//transforms rgb to hex
+	//transforms rgb ARRAY to hex
 	return "#" + componentToHex(rgb[0]) + componentToHex(rgb[1]) + componentToHex(rgb[2]);
 }
 
 
-function generation(entities) {
-	for (var i = 0; i < entities.length; i++) {
-		//Check populate.js
-	}
+function generation() {
+    generations++;
+    entities.sort(
+        function(a,b) {
+            return a.distance - b.distance;
+        }
+    )
+    for (ent of entities) {
+        console.log(ent.distance);
+    }
 }

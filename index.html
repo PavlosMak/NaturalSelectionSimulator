@@ -1,47 +1,94 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8">
     <title>Natural Selection Simulator</title>
 </head>
+
 <body>
     <div id='game'>
         <h1>Natural Selection Simulator</h1>
         <h3>Simulation</h3>
         <canvas id="Canvas" width="600" height="600"></canvas>
         <form id="settings">
-            <h3>Settings</h3>
-            Background Color<br>
-            <input type="text" id="color_field" value="RGB(123,205,123)"/><br>
-            Mutation Possibility (%)<br>
-            <input type="text" id="mutation_field" value="10"/><br>
-            Mutation Change Range<br>
-            <input type="text" id="mutation_change_field" value="5"/><br>
-            Initial Entities Number<br>
-            <input type="text" id="init_entities_num" value="100"/><br>
-            <input type="button" id='start' value="Start Simulation" onclick="initialize()"/><br>
-            Pass
-            <input type="text" id="generation_num" value="1">
-            <input type="button" id='generation'
-            value="Generations" onclick="many_gen(document.getElementById('generation_num').value)"/>
+            <ul class="list-group">
+                <li class='list-group-item'>
+                    <h3>Settings</h3>
+                </li>
+                <li class="list-group-item">
+                    Background Color:
+                    <input id='color_field' type="color" name="favcolor" value="#ff0000">
+                </li>
+                <li class="list-group-item">
+                    Mutation Possibility (%)
+                    <input type="text" id="mutation_field" value="20" />
+                </li>
+                <li class="list-group-item">
+                    Mutation Change Range
+                    <input type="text" id="mutation_change_field" value="20" />
+                </li>
+                <li class="list-group-item">
+                    Initial Entities Number
+                    <input type="text" id="init_entities_num" value="100" />
+                </li>
+                <li class="list-group-item">
+                    Entities killed every generation (%)
+                    <input type="text" id="perc_killed" value="50" />
+                </li>
+                <li class="list-group-item">
+                    <input type="button" id='start' value="Start Simulation" onclick="initialize()" />
+                </li>
+                <li class="list-group-item">
+                    Pass
+                    <input type="text" id="generation_num" value="1">
+                    <input type="button" id='generation' value="Generations"
+                        onclick="many_gen(document.getElementById('generation_num').value)" />
+                </li>
+                <li class="list-group-item">
+                    <a href='help.html'>Help</a>
+                </li>
+            </ul>
         </form>
     </div>
     <div id='log-title'>
-        <h3>Log</h3>
-        <table id="log" class='table'> <!--Table to log data-->
-            <tr>
-                <td>Generation</td>
-                <td>Population</td>
-                <td>Mutations</td>
-                <td>Average Color</td>
-                <td>Background Color</td>
-                <td>Entity-Background color difference</td>
-            </tr>
-        </table>
+        <ul class='list-group'>
+            <li class='list-group-item'>
+                <h3>Log</h3>
+            </li>
+            <li class='list-group-item'>
+                <table id="log" class='table'>
+                    <!--Table to log data-->
+                    <tr>
+                        <td>Generation</td>
+                        <td>Population</td>
+                        <td>Mutations</td>
+                        <td>Average Color (rgb)</td>
+                        <td>Background Color (rgb)</td>
+                        <td>Entity-Background color difference (rgb)</td>
+                    </tr>
+                </table>
+            </li>
+        </ul>
     </div>
 </body>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="style/style.css">
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+</script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+</script>
+
 <script type="text/javascript" src="main.js"></script>
+<link rel="stylesheet" type="text/css" href="style/style.css">
+
 </html>

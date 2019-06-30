@@ -65,16 +65,18 @@ function log() {
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
     var cell6 = row.insertCell(5);
-    var cell7 = row.insertCell(6);
+
+    cell4.style.backgroundColor = array_to_rgb(mean_of_colors(entities));
+    cell5.style.backgroundColor = array_to_rgb(background_color);
 
     cell1.innerHTML = generations;
     cell2.innerHTML = entities.length; //Should stay stable but that may change in a later version
     cell3.innerHTML = total_mutations;
     cell4.innerHTML = mean_of_colors(entities);;
     cell5.innerHTML = background_color;
-	cell6.innerHTML = [(Math.abs(background_color[0]-mean_of_colors(entities)[0]).toFixed(2)),
-                        (Math.abs(background_color[1]-mean_of_colors(entities)[1]).toFixed(2)),
-                        (Math.abs(background_color[2]-mean_of_colors(entities)[2]).toFixed(2))];
+	cell6.innerHTML = [(Math.abs(background_color[0]-mean_of_colors(entities)[0]).toFixed(0)),
+    (Math.abs(background_color[1]-mean_of_colors(entities)[1]).toFixed(0)),
+    (Math.abs(background_color[2]-mean_of_colors(entities)[2]).toFixed(0))];
 }
 
 function disable_button(id){
@@ -87,6 +89,16 @@ function enable_button(id){
 
 //initially disables the generation button
 disable_button("generation");
+
+function hex_to_rgb(hex){
+    hex = hex.replace('#','');
+    r = parseInt(hex.substring(0,2), 16);
+    g = parseInt(hex.substring(2,4), 16);
+    b = parseInt(hex.substring(4,6), 16);
+
+    result = 'rgb('+r+','+g+','+b+')';
+    return result;
+}
 
 function array_to_rgb(rgb_array){
     //converts rgb arrays to strings
@@ -167,7 +179,9 @@ function generation_pass() {
     //kills the "worst" entities, the ones
     //with the bigger difference from the bg color
     ent_length = entities.length;
-    for (var i = 0; i < (ent_length / 2); i++){
+    killed_number = Math.round(ent_length*(percentage_killed/100))
+    console.log(killed_number);
+    for (var i = 0; i < killed_number; i++){
         entities.pop();
     }
 
@@ -205,7 +219,8 @@ function many_gen(n){
 //Sets background-color and mutation_rate
 function initialize() {
 	//sets the background color
-	background_color = document.getElementById("color_field").value;
+    background_color = document.getElementById("color_field").value;
+    background_color = hex_to_rgb(background_color);
     document.getElementById("Canvas").style.backgroundColor = background_color;
     background_color = rgb_to_array(background_color);
 	//imports the mutation chance and the initial entities number from the user
@@ -213,6 +228,8 @@ function initialize() {
 	init_entities_num = document.getElementById("init_entities_num").value;
     //imports the mutation change range
     mutation_change_range = document.getElementById("mutation_change_field").value;
+    //imports the percentage killed every generation
+    percentage_killed = document.getElementById("perc_killed").value;
 
     mutation_list = [true,false];
     weight = [2*(mutation_chance/100), 1-2*(mutation_chance/100)];
@@ -224,6 +241,7 @@ function initialize() {
 			Math.floor(Math.random() * 255)
         ]));
     }
+    log();
     //disables the "start button"
     disable_button("start");
 	//initially populates

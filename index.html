@@ -2,36 +2,46 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="main.css">
     <title>Natural Selection Simulator</title>
 </head>
 <body>
-    <form id="settings">
-        Background Color<br>
-        <input type="text" id="color_field" value="RGB(123,205,123)"/><br>
-        Mutation Possibility (%)<br>
-        <input type="text" id="mutation_field" value="10"/><br>
-        Mutation Change Range<br>
-        <input type="text" id="mutation_change_field" value="5"/><br>
-        Initial Entities Number<br>
-        <input type="text" id="init_entities_num" value="100"/><br>
-        <input type="button" id='start' value="Start Simulation" onclick="initialize()"/><br>
-        Pass
-        <input type="text" id="generation_num" value="1">
-        <input type="button" id='generation'
-        value="Generations" onclick="many_gen(document.getElementById('generation_num').value)"/>
-    </form>
-    <canvas id="Canvas" width="600" height="600"></canvas>
-    <table id="log"> <!--Table to log data-->
-        <tr>
-            <td>Generation</td>
-            <td>Population</td>
-            <td>Mutations</td>
-            <td>Mean of Colors</td>
-            <td>Background Color</td>
-            <td>Entity-Background color difference</td>
-        </tr>
-    </table>
+    <div id='game'>
+        <h1>Natural Selection Simulator</h1>
+        <h3>Simulation</h3>
+        <canvas id="Canvas" width="600" height="600"></canvas>
+        <form id="settings">
+            <h3>Settings</h3>
+            Background Color<br>
+            <input type="text" id="color_field" value="RGB(123,205,123)"/><br>
+            Mutation Possibility (%)<br>
+            <input type="text" id="mutation_field" value="10"/><br>
+            Mutation Change Range<br>
+            <input type="text" id="mutation_change_field" value="5"/><br>
+            Initial Entities Number<br>
+            <input type="text" id="init_entities_num" value="100"/><br>
+            <input type="button" id='start' value="Start Simulation" onclick="initialize()"/><br>
+            Pass
+            <input type="text" id="generation_num" value="1">
+            <input type="button" id='generation'
+            value="Generations" onclick="many_gen(document.getElementById('generation_num').value)"/>
+        </form>
+    </div>
+    <div id='log-title'>
+        <h3>Log</h3>
+        <table id="log" class='table'> <!--Table to log data-->
+            <tr>
+                <td>Generation</td>
+                <td>Population</td>
+                <td>Mutations</td>
+                <td>Average Color</td>
+                <td>Background Color</td>
+                <td>Entity-Background color difference</td>
+            </tr>
+        </table>
+    </div>
 </body>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="style/style.css">
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script type="text/javascript" src="main.js"></script>
 </html>

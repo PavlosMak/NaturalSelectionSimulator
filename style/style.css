@@ -1,0 +1,15 @@
+#Canvas {
+    border: 1px solid #000000;
+    margin: 10px;
+}
+
+#settings {
+    border: 1px solid black;
+    margin:10px;
+    width: 600px;
+}
+
+#log-title {
+    border: 1px solid black;
+    margin:10px;
+}

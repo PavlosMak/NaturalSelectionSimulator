@@ -64,17 +64,17 @@ function log() {
     var cell3 = row.insertCell(2);
     var cell4 = row.insertCell(3);
     var cell5 = row.insertCell(4);
-	var cell6 = row.insertCell(5);
+    var cell6 = row.insertCell(5);
+    var cell7 = row.insertCell(6);
 
     cell1.innerHTML = generations;
     cell2.innerHTML = entities.length; //Should stay stable but that may change in a later version
     cell3.innerHTML = total_mutations;
     cell4.innerHTML = mean_of_colors(entities);;
     cell5.innerHTML = background_color;
-	cell6.innerHTML = [Math.abs(background_color[0]-mean_of_colors(entities)[0]).toFixed(2),
-						Math.abs(background_color[1]-mean_of_colors(entities)[1]).toFixed(2),
-						Math.abs(background_color[2]-mean_of_colors(entities)[2]).toFixed(2)];
-
+	cell6.innerHTML = [(Math.abs(background_color[0]-mean_of_colors(entities)[0]).toFixed(2)),
+                        (Math.abs(background_color[1]-mean_of_colors(entities)[1]).toFixed(2)),
+                        (Math.abs(background_color[2]-mean_of_colors(entities)[2]).toFixed(2))];
 }
 
 function disable_button(id){
@@ -142,9 +142,9 @@ function mean_of_colors(entities_list){
 	}
 	//console.log([sum_of_reds/entities_list.length,sum_of_blues/entities_list.length,sum_of_greens/entities_list.length]);
 
-	var mean_color = [(sum_of_reds/entities_list.length).toFixed(2),
-		(sum_of_blues/entities_list.length).toFixed(2),
-			(sum_of_greens/entities_list.length).toFixed(2)]; //Mean color up to 2 decimals
+	var mean_color = [Math.round(sum_of_reds/entities_list.length),
+		                Math.round(sum_of_blues/entities_list.length),
+			            Math.round(sum_of_greens/entities_list.length)];
 
 	return mean_color;
 }

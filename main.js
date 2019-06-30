@@ -56,7 +56,6 @@ var get_random_item = function(list, weight) {
 };
 
 function log() {
-
     var table = document.getElementById("log");
     var row = table.insertRow(-1);
     var cell1 = row.insertCell(0);
@@ -72,7 +71,7 @@ function log() {
     cell1.innerHTML = generations;
     cell2.innerHTML = entities.length; //Should stay stable but that may change in a later version
     cell3.innerHTML = total_mutations;
-    cell4.innerHTML = mean_of_colors(entities);;
+    cell4.innerHTML = mean_of_colors(entities);
     cell5.innerHTML = background_color;
 	cell6.innerHTML = [(Math.abs(background_color[0]-mean_of_colors(entities)[0]).toFixed(0)),
     (Math.abs(background_color[1]-mean_of_colors(entities)[1]).toFixed(0)),
@@ -155,8 +154,8 @@ function mean_of_colors(entities_list){
 	//console.log([sum_of_reds/entities_list.length,sum_of_blues/entities_list.length,sum_of_greens/entities_list.length]);
 
 	var mean_color = [Math.round(sum_of_reds/entities_list.length),
-		                Math.round(sum_of_blues/entities_list.length),
-			            Math.round(sum_of_greens/entities_list.length)];
+		                Math.round(sum_of_greens/entities_list.length),
+			            Math.round(sum_of_blues/entities_list.length)];
 
 	return mean_color;
 }

@@ -1,5 +1,6 @@
 var mutation_chance;
-var generations;
+var generations = 0;
+var total_mutations = 0;
 var background_color;
 var init_entities_num;
 
@@ -10,6 +11,7 @@ var canvas_width = 600;
 var canvas_height = 600;
 
 var entities = [];
+var mean_color = [];
 
 var mutation_list;
 var weight;
@@ -24,9 +26,9 @@ class Entity {
 			Math.floor(Math.random() * (canvas_height-entity_height))
 		];
         this.color = color;
-        this.distance = 
-            ((this.color[0]-background_color[0])**2 + 
-            (this.color[1]-background_color[1])**2 + 
+        this.distance =
+            ((this.color[0]-background_color[0])**2 +
+            (this.color[1]-background_color[1])**2 +
             (this.color[2]-background_color[2])**2)**(1/2);
 	}
 }
@@ -34,24 +36,46 @@ class Entity {
 var rand = function(min, max) {
     return Math.random() * (max - min) + min;
 };
- 
+
 var get_random_item = function(list, weight) {
     var total_weight = weight.reduce(function (prev, cur, i, arr) {
         return prev + cur;
     });
-     
+
     var random_num = rand(0, total_weight);
     var weight_sum = 0;
-     
+
     for (var i = 0; i < list.length; i++) {
         weight_sum += weight[i];
         weight_sum = +weight_sum.toFixed(2);
-         
+
         if (random_num <= weight_sum) {
             return list[i];
         }
     }
 };
+
+function log() {
+
+    var table = document.getElementById("log");
+    var row = table.insertRow(-1);
+    var cell1 = row.insertCell(0);
+    var cell2 = row.insertCell(1);
+    var cell3 = row.insertCell(2);
+    var cell4 = row.insertCell(3);
+    var cell5 = row.insertCell(4);
+	var cell6 = row.insertCell(5);
+
+    cell1.innerHTML = generations;
+    cell2.innerHTML = entities.length; //Should stay stable but that may change in a later version
+    cell3.innerHTML = total_mutations;
+    cell4.innerHTML = mean_of_colors(entities);;
+    cell5.innerHTML = background_color;
+	cell6.innerHTML = [Math.abs(background_color[0]-mean_of_colors(entities)[0]).toFixed(2),
+						Math.abs(background_color[1]-mean_of_colors(entities)[1]).toFixed(2),
+						Math.abs(background_color[2]-mean_of_colors(entities)[2]).toFixed(2)];
+
+}
 
 function disable_button(id){
     document.getElementById(id).disabled = true;
@@ -106,6 +130,25 @@ function populate() {
 	}
 }
 
+function mean_of_colors(entities_list){
+	var sum_of_reds = 0;
+	var sum_of_greens = 0;
+	var sum_of_blues = 0;
+	for (ent of entities){
+		sum_of_reds +=  ent.color[0];
+		sum_of_greens += ent.color[1];
+		sum_of_blues +=  ent.color[2];
+		//console.log(ent.color[0]);
+	}
+	//console.log([sum_of_reds/entities_list.length,sum_of_blues/entities_list.length,sum_of_greens/entities_list.length]);
+
+	var mean_color = [(sum_of_reds/entities_list.length).toFixed(2),
+		(sum_of_blues/entities_list.length).toFixed(2),
+			(sum_of_greens/entities_list.length).toFixed(2)]; //Mean color up to 2 decimals
+
+	return mean_color;
+}
+
 //renamed to "generation_pass" because "generation"
 //is reserved.
 function generation_pass() {
@@ -113,6 +156,7 @@ function generation_pass() {
     //so that the user cant spam it
     disable_button("generation");
     generations++;
+	//alert(generations);
     //sorting the entities list by distance from the
     //background color
     entities.sort(
@@ -140,6 +184,7 @@ function generation_pass() {
                 ent.color[1]+mutation_plus_g,
                 ent.color[2]+mutation_plus_b]);
             entities.push(new_ent);
+			total_mutations += 1;
         } else {
             new_ent = new Entity([ent.color[0],ent.color[1],ent.color[2]]);
             entities.push(new_ent);
@@ -147,13 +192,13 @@ function generation_pass() {
     }
     populate();
     enable_button('generation');
+	log();
 }
 
 function many_gen(n){
     //this function helps pass many generations once
     for (var i = 0; i < n; i++){
-        generation_pass()
-        
+        generation_pass();
     }
 }
 
@@ -186,4 +231,3 @@ function initialize() {
     //enables the generation button
     enable_button("generation");
 }
-

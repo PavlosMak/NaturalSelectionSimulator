@@ -2,6 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="main.css">
     <title>Natural Selection Simulator</title>
 </head>
 <body>
@@ -17,11 +18,20 @@
         <input type="button" id='start' value="Start Simulation" onclick="initialize()"/><br>
         Pass
         <input type="text" id="generation_num" value="1">
-        <input type="button" id='generation' 
+        <input type="button" id='generation'
         value="Generations" onclick="many_gen(document.getElementById('generation_num').value)"/>
     </form>
-
     <canvas id="Canvas" width="600" height="600"></canvas>
+    <table id="log"> <!--Table to log data-->
+        <tr>
+            <td>Generation</td>
+            <td>Population</td>
+            <td>Mutations</td>
+            <td>Mean of Colors</td>
+            <td>Background Color</td>
+            <td>Entity-Background color difference</td>
+        </tr>
+    </table>
 </body>
 <script type="text/javascript" src="main.js"></script>
 </html>

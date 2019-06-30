@@ -2,6 +2,8 @@
 
 Simulating natural selection in your browser.
 
+![alt text](natural_selection.gif)
+
 ## Summary
 
 This game is simulating natural selection. Firstly, we have entities. These are the "living creatures" that are trying to adapt to their environment. The environment is the background color. The closer the entity's color to the background color, the bigger biological advantage they have. For example, a red entity has far better chance to survive in an orange background than a blue entity. The entities that survive, clone themselves with a chance of mutation, that is defined by the user.

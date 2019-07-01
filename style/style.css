@@ -14,3 +14,8 @@
     border: 1px solid #888888;
     margin:10px;
 }
+
+#wrapper{
+    width: 1250px;
+    margin: 0 auto;
+}

@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Natural Selection Simulator</title>
+    <title>Προσομοιωτής Φυσικής Επιλογής</title>
 </head>
 
 <body>
@@ -11,50 +11,50 @@
 
 
     <div id='game'>
-        <h1>Natural Selection Simulator</h1>
-        <p>Made by Alexandros Bartzos and Pavlos Makridis, published under the MIT Licence. <br> <a href="https://github.com/PavlosMak/Natural-selection-simulator">Source</a></p>
-        <h3>Simulation</h3>
+        <h1>Προσομοιωτής Φυσικής Επιλογής</h1>
+        <p>Φτιάχτηκε από τον Παύλο Μακρίδη και τον Αλέξανδρο Μπάρτζο, δημοσιεύτηκε με την άδεια χρήσης του MIT<br> <a href="https://github.com/PavlosMak/Natural-selection-simulator">Πηγαίος Κώδικας</a></p>
+        <h3>Προσομοίωση</h3>
 
         <canvas id="Canvas" width="600" height="600"></canvas>
         <form id="settings">
             <ul class="list-group">
                 <li class='list-group-item'>
-                    <h3>Settings</h3>
+                    <h3>Ρυθμίσεις</h3>
                 </li>
                 <li class="list-group-item">
-                    Background Color:
+                    Χρώμα Φόντου:
                     <input id='color_field' type="color" name="favcolor" value="#ff0000">
                 </li>
                 <li class="list-group-item">
-                    Mutation Possibility (%)
+                    Πιθανότητα Μετάλλαξης (%)
                     <input type="text" id="mutation_field" value="20" />
                 </li>
                 <li class="list-group-item">
-                    Mutation Change Range
+                    Εύρος Μετάλλαξης
                     <input type="text" id="mutation_change_field" value="20" />
                 </li>
                 <li class="list-group-item">
-                    Initial Entities Number
+                    Αρχικός Αριθμός Οντοτήτων
                     <input type="text" id="init_entities_num" value="100" />
                 </li>
                 <li class="list-group-item">
-                    Entities killed every generation (%)
+                    Ποσοστό Οντοτήτων που σκοτώνονται ανά γεννιά (%)
                     <input type="text" id="perc_killed" value="50" />
                 </li>
                 <li class="list-group-item">
-                    <input type="button" id='start' value="Start Simulation" onclick="initialize()" />
+                    <input type="button" id='start' value="Έναρξη Προσομοίωσης" onclick="initialize()" />
                 </li>
                 <li class="list-group-item">
-                    Pass
+                    Πέρνα
                     <input type="text" id="generation_num" value="1">
-                    <input type="button" id='generation' value="Generations"
+                    <input type="button" id='generation' value="Γεννιές"
                         onclick="many_gen(document.getElementById('generation_num').value)" />
                 </li>
                 <li class="list-group-item">
                     <a href='help.html'>Help</a>
                     |  
                     <a href='greek.html'><img src='style/greek.svg' width='30px' alt='Greek'></a>
-                    <a href='index.html'><img src='style/usa.svg' width='30px' alt='Greek'></a>
+                    <a href='index.html'><img src='style/usa.svg' width='30px' alt='English'></a>
                 </li>
             </ul>
         </form>
@@ -62,18 +62,18 @@
     <div id='log-title'>
         <ul class='list-group'>
             <li class='list-group-item'>
-                <h3>Log</h3>
+                <h3>Καταγραφή</h3>
             </li>
             <li class='list-group-item'>
                 <table id="log" class='table'>
                     <!--Table to log data-->
                     <tr>
-                        <td>Generation</td>
-                        <td>Population</td>
-                        <td>Mutations</td>
-                        <td>Average Color (rgb)</td>
-                        <td>Background Color (rgb)</td>
-                        <td>Entity-Background color difference (rgb)</td>
+                        <td>Γεννιά</td>
+                        <td>Πληθυσμός</td>
+                        <td>Συνολικές Μεταλλάξεις</td>
+                        <td>Μέσο χρώμα οντοτήτων (rgb)</td>
+                        <td>Χρώμα φόντου (rgb)</td>
+                        <td>Διαφορά φόντου - Μέσου χρώματος (rgb)</td>
                     </tr>
                 </table>
             </li>

@@ -11,50 +11,47 @@
         <h1>Natural Selection Simulator</h1>
         <p>Made by Alexandros Bartzos and Pavlos Makridis, published under the MIT Licence. <br> <a href="https://github.com/PavlosMak/Natural-selection-simulator">Source</a></p>
         <h3>Simulation</h3>
-<<<<<<< HEAD
-        <div id="wrapper">
-            <canvas id="Canvas" width="600" height="600"></canvas>
-            <form id="settings">
-                <ul class="list-group">
-                    <li class='list-group-item'>
-                        <h3>Settings</h3>
-                    </li>
-                    <li class="list-group-item">
-                        Background Color:
-                        <input id='color_field' type="color" name="favcolor" value="#ff0000">
-                    </li>
-                    <li class="list-group-item">
-                        Mutation Possibility (%)
-                        <input type="text" id="mutation_field" value="20" />
-                    </li>
-                    <li class="list-group-item">
-                        Mutation Change Range
-                        <input type="text" id="mutation_change_field" value="20" />
-                    </li>
-                    <li class="list-group-item">
-                        Initial Entities Number
-                        <input type="text" id="init_entities_num" value="100" />
-                    </li>
-                    <li class="list-group-item">
-                        Entities killed every generation (%)
-                        <input type="text" id="perc_killed" value="50" />
-                    </li>
-                    <li class="list-group-item">
-                        <input type="button" id='start' value="Start Simulation" onclick="initialize()" />
-                    </li>
-                    <li class="list-group-item">
-                        Pass
-                        <input type="text" id="generation_num" value="1">
-                        <input type="button" id='generation' value="Generations"
-                            onclick="many_gen(document.getElementById('generation_num').value)" />
-                    </li>
-                    <li class="list-group-item">
-                        <a href='help.html'>Help</a>
-                    </li>
-                </ul>
-            </form>
-        </div>
-=======
+
+        <canvas id="Canvas" width="600" height="600"></canvas>
+        <form id="settings">
+            <ul class="list-group">
+                <li class='list-group-item'>
+                    <h3>Settings</h3>
+                </li>
+                <li class="list-group-item">
+                    Background Color:
+                    <input id='color_field' type="color" name="favcolor" value="#ff0000">
+                </li>
+                <li class="list-group-item">
+                    Mutation Possibility (%)
+                    <input type="text" id="mutation_field" value="20" />
+                </li>
+                <li class="list-group-item">
+                    Mutation Change Range
+                    <input type="text" id="mutation_change_field" value="20" />
+                </li>
+                <li class="list-group-item">
+                    Initial Entities Number
+                    <input type="text" id="init_entities_num" value="100" />
+                </li>
+                <li class="list-group-item">
+                    Entities killed every generation (%)
+                    <input type="text" id="perc_killed" value="50" />
+                </li>
+                <li class="list-group-item">
+                    <input type="button" id='start' value="Start Simulation" onclick="initialize()" />
+                </li>
+                <li class="list-group-item">
+                    Pass
+                    <input type="text" id="generation_num" value="1">
+                    <input type="button" id='generation' value="Generations"
+                        onclick="many_gen(document.getElementById('generation_num').value)" />
+                </li>
+                <li class="list-group-item">
+                    <a href='help.html'>Help</a>
+                </li>
+            </ul>
+        </form>
         <canvas id="Canvas" width="600" height="600"></canvas>
         <form id="settings">
             <ul class="list-group">
